@@ -1,6 +1,6 @@
-# GCC based Dockerfile for easy hacking 
-# Install packages and stuff 
+# Ubuntu-based Dockerfile for everyday hacking
 
+# Install packages and stuff 
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -33,6 +33,13 @@ RUN apt-get update && \
     libavformat-dev \ 
     libswscale-dev 
 
+# Setup neovim
+RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
+    git clone https://github.com/hkhajanchi/nvim-config && \
+    mkdir -p /root/.config/nvim && \
+    mv nvim-config/init.vim /root/.config/nvim/ && \
+    rm -rf nvim-config && \
+    nvim --headless +PlugInstall +qall 
 
 # Build OpenCV 
 RUN cd ~ && git clone https://github.com/opencv/opencv.git && \ 
