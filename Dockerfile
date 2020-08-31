@@ -11,6 +11,7 @@ RUN apt-get update && \
     bat \ 
     binutils \
     clang \ 
+    curl \ 
     gcc \ 
     gdb \ 
     git \ 
