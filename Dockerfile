@@ -18,6 +18,7 @@ RUN apt-get update && \
     htop \ 
     cmake \ 
     neovim \ 
+    npm \ 
     python3 \ 
     python3-pip \
     ssh \ 
@@ -43,13 +44,13 @@ RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/p
     nvim --headless +PlugInstall +qall 
 
 # Build OpenCV 
-RUN cd ~ && git clone https://github.com/opencv/opencv.git && \ 
-    cd opencv && \
-    mkdir build && \ 
-    cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Release .. && \
-    make -j12 && \ 
-    make install 
+#RUN cd ~ && git clone https://github.com/opencv/opencv.git && \ 
+#    cd opencv && \
+#    mkdir build && \ 
+#    cd build && \
+#    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+#    make -j12 && \ 
+#    make install 
 
 # Python stuff
 RUN pip3 install -U numpy 
