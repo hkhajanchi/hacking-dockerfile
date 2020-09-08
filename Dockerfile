@@ -43,8 +43,9 @@ RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/p
     nvim --headless +CocInstall coc-python +qall && \  
     nvim --headless +CocInstall coc-clangd +qall && \ 
     nvim --headless +CocInstall coc-clangd +qall  
+
 # Python stuff
-RUN pip3 install -U numpy pylint jedi
+RUN pip3 install -U numpy pylint jedi pynvim
 
 WORKDIR /hack 
 
