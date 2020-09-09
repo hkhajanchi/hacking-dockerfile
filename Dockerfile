@@ -32,12 +32,15 @@ RUN apt-get update && \
 # Setup neovim
 RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
     git clone https://github.com/hkhajanchi/nvim-config && \
+    git clone https://github.com/hkhajanchi/dotfiles && \
     mkdir -p /root/.config/nvim && \
     mkdir -p /root/.config/nvim/general && \
     mv nvim-config/init.vim /root/.config/nvim/ && \
     mv nvim-config/settings.vim /root/.config/nvim/general && \ 
     mv nvim-config/.vimrc /root && \ 
+    mv dotfiles/config.fish /root/.config/fish && \
     rm -rf nvim-config && \
+    rm -rf dotfiles && \
     nvim --headless +PlugInstall +qall && \ 
     nvim --headless +CocInstall coc-python +qall && \  
     nvim --headless +CocInstall coc-python +qall && \  
